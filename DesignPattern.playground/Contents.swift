@@ -25,3 +25,19 @@ struct AvatarView: View {
     }
 }
 
+// The Command Pattern
+// Instead of writing the core business logic in viewmodel we take it out from it and write it in usecases Impl structs
+
+protocol FetchActiveAllergiesUseCase {
+    func exexute() -> [String]
+}
+
+struct FetchActiveAllergiesUseCaseImpl: FetchActiveAllergiesUseCase {
+    func exexute() -> [String] {
+        let allAlergies = ["Peanuts", "Dust", "Penicillin"]
+ 
+        return allAlergies.filter { !$0.contains("Dust")}
+    }
+}
+
+    
