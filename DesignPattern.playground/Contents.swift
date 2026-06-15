@@ -40,4 +40,38 @@ struct FetchActiveAllergiesUseCaseImpl: FetchActiveAllergiesUseCase {
     }
 }
 
+
+// Dependancy Injection Pattern
+// Instead of initializing inside class we can pass it from outside while creating the reference of a class
+
+protocol NetworkCalls {
+    func fetch()
+}
+
+class NetworkService: NetworkCalls {
+    func fetch() {
+        print("calling network APIs")
+    }
+}
+
+class MyTable {
     
+    let networkService: NetworkService
+    
+    init(networkService: NetworkService) {
+        self.networkService = networkService
+    }
+    
+    func callFetchAPI() {
+        networkService.fetch()
+    }
+}
+
+// Adaptor / Data Mapper pattern
+// getting the data from APIs and converting it into swift data types to be used in the app
+
+struct login {
+    let name: String
+    let sirname: String
+}
+
